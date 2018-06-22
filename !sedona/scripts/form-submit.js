@@ -17,16 +17,17 @@ function closePopup(popup) {
   popup.style.display = 'none';
 }
 
-buttonSubmit.addEventListener('click', function() {
+buttonSubmit.addEventListener('click', function(event) {
+  event.preventDefault();
   for (var i = 0; i < inputs.length; i++) {
     var input = inputs[i];
-    if (input.checkValidity() == false)
-    console.log(i);
-  
+    if (input.checkValidity() == false) {
+      //console.log(i);
+      return showPopup(popupFail);
+    }
   }
+  return showPopup(popupSuccess);
 });
-
-
 
 buttonFail.addEventListener('click', function() {
   closePopup(popupFail);
